@@ -1,0 +1,41 @@
+{% extends "layouts/base.html" %}
+{% block title %}Update Subject{% endblock %}
+{% block body_block %}    
+<div class="container-fluid d-block  mt-5">
+    <header class="mb-auto  mx-5 px-5  mb-5">
+        <div>
+            <h3 class="float-md-start mb-0">LOGO</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link " aria-current="page" href="{% url 'index' %}">Home</a>
+                <a class="nav-link active" href="{% url 'app' %}">App</a>
+                <a class="nav-link" href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <form class="mt-5 mx-5 px-5 py-5" action="{% url 'updatesub' subject.id %}" method="POST">
+      {% csrf_token %} 
+        <div class="mb-3">
+          <label for="subname" class="form-label">Subject Name</label>
+          <input type="text" class="form-control" name="name" id="subname" aria-describedby="subNameHelp" value="{{subject.name}}" required>
+          <div id="subNameHelp" class="form-text">Enter Subject's Full Name.</div>
+        </div>
+        <div class="mb-3">
+          <label for="subshort" class="form-label">Short Name</label>
+          <input type="text" class="form-control" id="subshort" name="short_name" value="{{subject.short_name}}" required> 
+        </div>        
+        <div class="mb-3">
+          <label for="subcode" class="form-label">Subject Code</label>
+          <input type="text" class="form-control" id="subcode" value="{{subject.code}}"  name="code" required>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" name="status" id="activeCheck" {% if subject.status == "on" %} checked {% endif %}>
+          <label class="form-check-label text-center" for="activeCheck">Active</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Update Subject</button> &nbsp;&nbsp; <a href="{% url 'addsub' %}" class="btn btn-info btn-sm">Cancel</a>
+      </form>
+
+      <br><br><br>
+   
+
+</div>
+ {% endblock body_block %} 

@@ -1,0 +1,132 @@
+{% extends "layouts/base.html" %}
+{% block title %}Student Form{% endblock %}
+{% block body_block %}    
+<div class="container d-block  mt-5">
+    <header class="mb-auto  mx-5 px-5  mb-5">
+        <div>
+            <h3 class="float-md-start mb-0">LOGO</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link " aria-current="page" href="{% url 'index' %}">Home</a>
+                <a class="nav-link active" href="{% url 'app' %}">App</a>
+                <a class="nav-link" href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <form class="mt-5 mx-5 px-5 py-5">
+        <div class="mb-3">
+          <label for="firstname" class="form-label">First Name</label>
+          <input type="text" class="form-control" name="first_name" id="firstname" required>
+        </div>        
+        <div class="mb-3">
+          <label for="lastname" class="form-label">Last Name</label>
+          <input type="text" class="form-control" name="last_name" id="lastname"  required>
+        </div>
+        <div class="mb-3">
+          <label for="roll" class="form-label">Roll</label>
+          <input type="text" class="form-control" id="roll" name="roll" required> 
+        </div>        
+        <div class="mb-3">
+          <label for="subcode" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="subcode" name="code" required>
+        </div>     
+        <div class="mb-3">
+          <label for="image" class="form-label">Image</label>
+          <input type="file" class="form-control" id="image" name="image" required>
+        </div>       
+        <div class="mb-3">
+          <label for="dob" class="form-label">Date Of Birth</label>
+          <input type="date" class="form-control" id="dob" name="dob" required>
+        </div>         
+        <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <div class="form-check d-flex clear-fix">
+            <input type="radio" class="form-check-input mr-3" id="male" name="gender" value="Male">&nbsp;
+            <label class="form-check-label" for="male">
+              Male
+            </label>
+            &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;&nbsp;
+            <input type="radio" class="form-check-input ml-3" id="female" name="gender" value="Female">&nbsp;
+            <label class="form-check-label" for="female">
+              Female
+            </label>
+            &nbsp;
+            &nbsp;&nbsp;
+            &nbsp;
+            &nbsp; 
+            <input type="radio" class="form-check-input pl-5 ml-3" id="other" name="gender" value="Other">&nbsp;
+            <label class="form-check-label" for="other">
+              Other
+            </label>
+          </div>     
+        </div>   
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" class="form-control" id="phone" name="phone" required>
+        </div>        
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="text" class="form-control" id="email" name="email" required>
+        </div>
+        <hr class="my-4">
+        
+            <label for="courses" class="form-label">Prefered Courses</label>
+            <br>
+            <div class="mb-3 d-flex">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="prefer" id="prefer1">
+              <label class="form-check-label" for="prefer1">JAVA</label>
+            </div>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <div class="form-check">
+              <input type="checkbox" name="prefer" class="form-check-input" id="prefer2">
+              <label class="form-check-label" for="prefer2">Python</label>
+            </div>
+            &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="prefer" id="prefer3">
+              <label class="form-check-label" for="prefer3">Discrete Math</label>
+            </div>            &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="prefer" id="prefer4">
+              <label class="form-check-label" for="prefer4">Web Technology</label>
+            </div>          &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="prefer" id="prefer5">
+              <label class="form-check-label" for="prefer5">Robotics</label>
+            </div>  &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="prefer" id="prefer6">
+              <label class="form-check-label" for="prefer6">Numerical Methods</label>
+            </div>  &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="prefer" id="prefer7">
+              <label class="form-check-label" for="prefer7">Machine Learning</label>
+            </div>
+        </div>
+        <hr class="my-4">
+      
+        <button type="submit" class="btn btn-primary btn-lg">Add Student</button>
+      </form>
+</div>
+ {% endblock body_block %} 
