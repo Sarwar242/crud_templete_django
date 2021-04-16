@@ -13,7 +13,8 @@ def index(request):
 
 
 def app(request):
-    return render(request,'app.html')
+    students=Student.objects.all()
+    return render(request,'app.html',{'students':students})
 
 
 class Addsub(View):
@@ -22,8 +23,6 @@ class Addsub(View):
         return render(request,'addsub.html', {'subs':subs})
     
     def post(self, request):
-        print(list(request.POST.items()))
-        print(request.POST['name'])
         form = SubjectForm(request.POST)
         if form.is_valid():
             new_sub = form.save()
@@ -47,16 +46,23 @@ class SubUpdate(UpdateView):
     success_url = reverse_lazy('addsub')   
 
 
-
-
-
 class SubDelete(DeleteView):
     model = Subject
     template_name = 'layouts/delete.html'   
     success_url = reverse_lazy('addsub')   
 
 
-
-def addstudent(request):
-    return render(request,'addstudent.html')
+#Students
+class Addstudent(View):
+    def get(self, request):
+        subs = Subject.objects.all()
+        return render(request,'addstudent.html', {'subs':subs})
+    
+    def post(self, request):
+        print(list(request.POST.items()))
+        print(request.POST['first_name'])
+        # form = SubjectForm(request.POST)
+        # if form.is_valid():
+        #     new_sub = form.save()
+        return HttpResponseRedirect(reverse('addstudent'))
 

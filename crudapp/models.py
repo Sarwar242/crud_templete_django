@@ -47,7 +47,7 @@ class Student(models.Model):
     phone      = PhoneNumberField(unique=True,blank=True,null=True)
     email      = models.EmailField(max_length=200,unique=True,blank=True,null=True)
     image      = models.ImageField(upload_to=UploadToPathAndRename(os.path.join('images','profile_image')), blank=True, null=True)
-    prefer     = models.JSONField(blank=True,null=True)
+    # prefer     = models.JSONField(blank=True,null=True)
 
     def __str__(self):
         return self.first_name+' '+self.last_name
