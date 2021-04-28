@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% block title %}Student Form{% endblock %}
+{% block title %} Edit Student {% endblock %}
 {% block body_block %}    
 <div class="container d-block  mt-5">
     <header class="mb-auto  mx-5 px-5  mb-5">
@@ -12,7 +12,19 @@
             </nav>
         </div>
     </header>
-    <form class="mt-5 mx-5 px-5 py-5">
+    <br>
+    {% if errors %}
+    <br>
+      <hr class="mt-4">
+        <div class="h-30 text-red" >
+            {{errors}}
+        </div>
+      <hr class="mb-4">
+    {% endif %}
+      
+    
+    <form action="{% url 'addstudent' %}" method="POST" class="mt-5 mx-5 px-5 py-5" enctype="multipart/form-data">
+      {% csrf_token %}
         <div class="mb-3">
           <label for="firstname" class="form-label">First Name</label>
           <input type="text" class="form-control" name="first_name" id="firstname" required>

@@ -43,8 +43,12 @@
                 <td>{{student.subject}}</td>
                 <td>{{student.dob}}</td>
                 <td>{{student.gender}}</td>
-                <td class="h-15"><img style="height: 30px;" src="{{student.image.url}} " alt=""></td>
-                <td><a href="#">Edit</a></td>
+                <td class="h-15">
+                    {% if student.image %}
+                        <img style="height: 30px;" src="{{student.image.url}} " alt="">
+                    {% endif %}
+                </td>
+                <td><a href="{% url 'student' student.id %}">Edit</a></td>
             </tr>
             {% endfor %}
         </tbody>

@@ -38,7 +38,7 @@ class StudentForm(forms.ModelForm):
     roll       = forms.CharField(label='Roll', max_length=200, required=False)
     subject    = forms.ModelChoiceField(queryset=Subject.objects.all(),  empty_label="(Select)",  required=False)
     dob        = forms.DateField(label='Date Of Birth', required=False)
-    gender     = forms.ChoiceField(label='Gender', choices=CHOICES, widget=forms.RadioSelect) 
+    gender     = forms.ChoiceField(label='Gender', choices=CHOICES, widget=forms.RadioSelect, required=False) 
     phone      = forms.CharField(label='Phone', required=False )
     email      = forms.EmailField(label='Email', required=False )
     image      = forms.ImageField(label='Image', required=False )

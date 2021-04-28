@@ -37,17 +37,24 @@ class Subject(models.Model):
 
 
 class Student(models.Model):
-    user       = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    user       = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     first_name = models.CharField(max_length=200, blank=True)
     last_name  = models.CharField(max_length=200, blank=True)
     roll       = models.CharField(max_length=200, blank=True)
     subject    = models.ForeignKey(Subject, on_delete=models.CASCADE, blank=True, null=True)
     dob        = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     gender     = models.CharField(max_length=50, choices=gender_choice, default='Male')
-    phone      = PhoneNumberField(unique=True,blank=True,null=True)
-    email      = models.EmailField(max_length=200,unique=True,blank=True,null=True)
+    phone      = PhoneNumberField(blank=True,null=True)
+    email      = models.EmailField(max_length=200,blank=True,null=True)
     image      = models.ImageField(upload_to=UploadToPathAndRename(os.path.join('images','profile_image')), blank=True, null=True)
     # prefer     = models.JSONField(blank=True,null=True)
 
+
     def __str__(self):
         return self.first_name+' '+self.last_name
+
+
+    def delete(self):
+        if self.image:
+            os.remove(self.image.path)
+        return super(Student,self).delete()

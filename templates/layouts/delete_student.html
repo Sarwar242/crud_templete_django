@@ -1,0 +1,25 @@
+{% extends "layouts/base.html" %}
+{% block title %}Delete Page{% endblock %}
+{% block body_block %}  
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column  text-center">
+    <header class="mb-auto">
+        <div>
+        <h3 class="float-md-start mb-0">LOGO</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link" aria-current="page"  href="{% url 'index' %}">Home</a>
+            <a class="nav-link active" href="{% url 'app' %}">App</a>
+            <a class="nav-link" href="#">Contact</a>
+        </nav>
+        </div>
+    </header>
+
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}" ?</p>
+        <input type="submit" class="btn btn-warning btn-sm" value="Confirm"> &nbsp; <a href="{% url 'app' %}" class="btn btn-info btn-sm">Cancel</a>
+    </form>
+    
+    <footer class="mt-auto text-white-50">
+        <p>Cover template from <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, &copy;Sarwar.</p>
+    </footer>
+</div>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends "layouts/base.html" %}
+{% block title %}Student Form{% endblock %}
+{% block body_block %}    
+<div class="container d-block  mt-5">
+    <header class="mb-auto  mx-5 px-5  mb-5">
+        <div>
+            <h3 class="float-md-start mb-0">LOGO</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link " aria-current="page" href="{% url 'index' %}">Home</a>
+                <a class="nav-link active" href="{% url 'app' %}">App</a>
+                <a class="nav-link" href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <br>
+    {% if errors %}
+    <br>
+      <hr class="mt-4">
+        <div class="h-30 text-red" >
+            {{errors}}
+        </div>
+      <hr class="mb-4">
+    {% endif %}
+      
+    
+    <form action="{% url 'studentupdate' student.id %}" method="POST" class="mt-5 mx-5 px-5 py-5" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="mb-3">
+          <label for="firstname" class="form-label">First Name</label>
+          <input type="text" class="form-control" name="first_name" id="firstname" value="{{student.first_name}}" required>
+        </div>        
+        <div class="mb-3">
+          <label for="lastname" class="form-label">Last Name</label>
+          <input type="text" class="form-control" name="last_name" id="lastname"  value="{{student.last_name}}" required>
+        </div>
+        <div class="mb-3">
+          <label for="roll" class="form-label">Roll</label>
+          <input type="text" class="form-control" id="roll" name="roll"  value="{{student.roll}}" required> 
+        </div>        
+        <div class="mb-3">
+          <label for="subject" class="form-label">Subject</label>       &nbsp;
+          &nbsp;
+          &nbsp;
+          <select name="subject" id="subject">
+            <option value="{{student.subject.id}}" selected disabled> {{student.subject}} </option>
+            {% for sub in subs %}
+              <option value="{{sub.id}}">{{sub.name}}</option>
+            {% endfor %}
+
+          </select>
+          
+        </div>     
+        <div class="mb-3">
+          <label for="image" class="form-label">Image</label>
+          <input type="file" class="form-control" id="image" name="image">
+        </div>  
+        
+        {% if student.image %}    
+          <div class="mx-2 p-3"><img style="height: 110px;" src="{{student.image.url}}" alt=""></div>     
+        {% endif %}
+        
+        <div class="mb-3">
+          <label for="dob" class="form-label">Date Of Birth</label>
+          <input type="date" class="form-control" id="dob" value="{{student.dob}}" name="dob">
+        </div>         
+        <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <div class="form-check d-flex clear-fix">
+            <input type="radio" class="form-check-input mr-3" id="male" name="gender" value="Male" 
+            {% if student.gender == "Male" %}
+              checked
+            {% endif %}
+              >&nbsp;
+            <label class="form-check-label" for="male">
+              Male
+            </label>
+            &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;&nbsp;
+            <input type="radio" class="form-check-input ml-3" id="female" name="gender" value="Female" {% if student.gender == "Female" %}
+            checked
+          {% endif %}>&nbsp;
+            <label class="form-check-label" for="female">
+              Female
+            </label>
+            &nbsp;
+            &nbsp;&nbsp;
+            &nbsp;
+            &nbsp; 
+            <input type="radio" class="form-check-input pl-5 ml-3" id="other" name="gender" value="Other" {% if student.gender == "Other" %}
+            checked {% endif %}>&nbsp;
+            <label class="form-check-label" for="other">
+              Other
+            </label>
+          </div>     
+        </div>   
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" class="form-control" id="phone" value="{{student.phone}}" name="phone" >
+        </div>        
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="text" class="form-control" id="email"  value="{{student.email}}" name="email">
+        </div>
+        <hr class="my-4">
+      
+        <button type="submit" class="btn btn-primary btn-sm">Update Student</button> 
+        &nbsp; <a href="{% url 'studentdelete' student.id %}" class="btn btn-warning btn-sm">Delete</a>
+        &nbsp; <a href="{% url 'app' %}" class="btn btn-info btn-sm">Cancel</a>
+      </form>
+</div>
+ {% endblock body_block %} 
