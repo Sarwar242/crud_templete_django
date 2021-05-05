@@ -6,7 +6,9 @@ from .forms import SubjectForm,StudentForm
 from django.urls import reverse,reverse_lazy  
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import ListView, DetailView  
-
+from rest_framework.response import Response
+from .serializers import SubSer, StuSer
+from rest_framework.decorators import api_view
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -103,3 +105,75 @@ class StudentDelete(DeleteView):
     model = Student
     template_name = 'layouts/delete_student.html'   
     success_url = reverse_lazy('app')   
+
+
+
+
+@api_view(['GET'])
+def subjectList(request):
+    subjects= Subject.objects.all()
+    serializer= SubSer(subjects, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def subjectJust(request, pk):
+    subjects= Subject.objects.get(id=pk)
+    serializer= SubSer(subjects, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def studentList(request):
+    students= Student.objects.all()
+    serializer= StuSer(students, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def studentJust(request, pk):
+    students= Student.objects.get(id=pk)
+    serializer= StuSer(students, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def studentAdd(request):
+    serializer= StuSer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def subjectAdd(request):
+    print(request)
+    print("*********************************************************************************************")
+    serializer= SubSer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def studentUpdate(request,pk):
+    student= Student.objects.get(id=pk)
+    serializer= StuSer(instance=student, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def subjectUpdate(request,pk):
+    subject= Subject.objects.get(id=pk)
+    serializer= SubSer(instance=subject, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def studentDelete(request,pk):
+    student= Student.objects.get(id=pk)
+    student.delete()
+    return Response('Deleted')
+
+@api_view(['DELETE'])
+def subjectDelete(request,pk):
+    subject= Subject.objects.get(id=pk)
+    subject.delete()
+    return Response('Deleted')
