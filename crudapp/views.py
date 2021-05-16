@@ -144,7 +144,6 @@ def studentAdd(request):
 @api_view(['POST'])
 def subjectAdd(request):
     print(request)
-    print("*********************************************************************************************")
     serializer= SubSer(data=request.data)
     if serializer.is_valid():
         serializer.save()
