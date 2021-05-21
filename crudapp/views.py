@@ -112,7 +112,6 @@ class StudentDetail(DetailView):
 
 
 
-
 class StudentDelete(DeleteView):
     model = Student
     template_name = 'layouts/delete_student.html'   
@@ -155,13 +154,9 @@ class studentAdd(CreateAPIView):
         serializer.save(subject=subject)
 
 
-
-
 class studentOperationsApi(RetrieveUpdateDestroyAPIView):
     queryset         =  Student.objects.all()
     serializer_class =  StudentSerializer 
-
-
 
 
 class subjectAdd(CreateAPIView):
@@ -184,16 +179,16 @@ class subjectOperationsApi(RetrieveUpdateDestroyAPIView):
 #     print(request.data['subject'])
 #     try:
 #         subject = Subject.objects.get(id =request.data['subject'])
-#         # student = Student.objects.create(
-#         #     first_name = request.data['first_name'],
-#         #     last_name = request.data['last_name'],
-#         #     roll = request.data['roll'],
-#         #     gender = request.data['gender'],
-#         #     phone = request.data['phone'],
-#         #     email = request.data['email'],
-#         #     dob = request.data['dob'],
-#         #     subject = subject
-#         # )
+#         student = Student.objects.create(
+#             first_name = request.data['first_name'],
+#             last_name = request.data['last_name'],
+#             roll = request.data['roll'],
+#             gender = request.data['gender'],
+#             phone = request.data['phone'],
+#             email = request.data['email'],
+#             dob = request.data['dob'],
+#             subject = subject
+#         )
 #         student=request.data
 #         serializer= StuSer(student, subject)
 #         if serializer.is_valid():
