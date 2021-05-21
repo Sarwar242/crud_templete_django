@@ -42,7 +42,7 @@ class Student(models.Model):
     last_name  = models.CharField(max_length=200, blank=True)
     roll       = models.CharField(max_length=200, blank=True)
     subject    = models.ForeignKey(Subject, on_delete=models.CASCADE, blank=True, null=True)
-    dob        = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
+    dob        = models.DateField(auto_now=False, blank=True, null=True)
     gender     = models.CharField(max_length=50, choices=gender_choice, default='Male')
     phone      = PhoneNumberField(blank=True,null=True)
     email      = models.EmailField(max_length=200,blank=True,null=True)

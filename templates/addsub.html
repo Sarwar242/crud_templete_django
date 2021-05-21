@@ -56,7 +56,7 @@
           <td>{{sub.name}}</td>
           <td>{{sub.short_name}}</td>
           <td>{{sub.code}}</td>
-          <td>{% if sub.status %} Active 
+          <td>{% if sub.status == 1 or sub.status == "on" or sub.status == "active" %} Active 
             {% else %}
             Inactive 
             {% endif %}</td>
