@@ -14,7 +14,7 @@ from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
 from django.core.exceptions import ObjectDoesNotExist
 from .serializers import SubSer, StuSer, StudentSerializer
 from rest_framework.decorators import api_view
-
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -157,6 +157,7 @@ class studentAdd(CreateAPIView):
 class studentOperationsApi(RetrieveUpdateDestroyAPIView):
     queryset         =  Student.objects.all()
     serializer_class =  StudentSerializer 
+    permission_classes = [IsAuthenticated]
 
 
 class subjectAdd(CreateAPIView):
